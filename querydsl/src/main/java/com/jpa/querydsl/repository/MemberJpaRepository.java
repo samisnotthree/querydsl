@@ -8,6 +8,7 @@ import com.jpa.querydsl.entity.QMember;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -29,7 +30,7 @@ public class MemberJpaRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    // @RequiredArgsConstructor 사용가능 + 테스트 코드에서 두번 주입해야함
+//    @RequiredArgsConstructor 사용가능 + 테스트 코드에서 두번 주입해야함
 //    public MemberJpaRepository(EntityManager em, JPAQueryFactory queryFactory) {
 //        this.em = em;
 //        this.queryFactory = queryFactory;
@@ -51,7 +52,8 @@ public class MemberJpaRepository {
 
     public List<Member> findAll_Querydsl() {
         return queryFactory
-                .selectFrom(member).fetch();
+                .selectFrom(member)
+                .fetch();
     }
 
     public List<Member> findByUsername(String username) {
